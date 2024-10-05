@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アクセストークン</title>
+</head>
+
+<body>
+    <h1>認証が完了しました</h1>
+    <div class="container">
+        <span class="label">access token:</span>
+        <pre><code>{{access_token}}</code></pre>
+        <button onclick="copyToClipboard(this)">copy</button>
+    </div>
+
+    <div class="container">
+        <span class="label">access secret token:</span>
+        <pre><code>{{access_token_secret}}</code></pre>
+        <button onclick="copyToClipboard(this)">copy</button>
+    </div>
+
+    <script>
+        function copyToClipboard(button) {
+            var text = button.previousElementSibling.innerText;
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+</body>
+
+<style>
+    pre {
+        background-color: #2d2d2d;
+        border: 1px solid #4d4d4d;
+        border-radius: 3px;
+        padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        overflow: auto;
+        color: #ffffff;
+        display: inline-block;
+        margin: 0;
+        font-size: 18px;
+    }
+
+    code {
+        font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 18px;
+        color: #ffffff;
+        background-color: #2d2d2d;
+        display: inline;
+        margin: 0;
+        padding: 0;
+        white-space: pre;
+    }
+
+    button {
+        height: 30px;
+        line-height: 30px;
+        width: 60px;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        background-color: #49f;
+        color: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 0 10px;
+    }
+
+    button:active {
+        transform: translate(0, 2px);
+        border-bottom: none;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .label {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+</style>
+
+</html>
