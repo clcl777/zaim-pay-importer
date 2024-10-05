@@ -17,4 +17,7 @@
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
   "python.languageServer": "Pylance",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/venv/lib/python3.10/site-packages",
+  ],
 }
