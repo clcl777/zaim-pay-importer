@@ -74,12 +74,12 @@ class ZaimPayImporter:
             self.zaim_sdk.insert_payment_simple(
                 date=p.payment_date,
                 amount=p.price,
-                genre="Other",
+                genre="Uncategorized",
                 place=p.store,
                 comment=p.payment_method,
             )
 
-    # 除外する支払い情報をはぶく
+    # 除外する支払い情報を省く
     def _exclude_payment(self, payments: list[PaymentInformation], exclude_set: set[str]) -> list[PaymentInformation]:
         new_payments = []
         for p in payments:
