@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from PayGmailScraper import PayGmailScraper, PaymentInformation
-
 from zaim_sdk import ZaimSDK
 
 
@@ -24,10 +23,11 @@ class ZaimPayImporter:
         access_token_secret: str,
         credentials_path: str,
         exclude_set: set[str],
-        token_path: str | None = None,
+        token_path: str = "token.json",
+        app_type: str = "desktop",
     ):
         self.zaim_sdk = ZaimSDK(consumer_id, consumer_secret, access_token, access_token_secret)
-        self.pay_gmail_scraper = PayGmailScraper(credentials_path, token_path)
+        self.pay_gmail_scraper = PayGmailScraper(app_type, credentials_path, token_path)
         self.zaim_payments_list = self._get_zaim_payment_list()
         self.exclude_set = exclude_set
 
@@ -92,9 +92,11 @@ class ZaimPayImporter:
         new_payments = self._diff_payment(gmail_payments, self.zaim_payments_list.ana_pay)
         new_payments = self._exclude_payment(new_payments, self.exclude_set)
         self._add_payments_to_zaim(new_payments)
+        print("ANA Pay import finished")
 
     def import_rakuten_pay(self):
         gmail_payments = self.pay_gmail_scraper.get_payments_rakuten_pay()
         new_payments = self._diff_payment(gmail_payments, self.zaim_payments_list.rakuten_pay)
         new_payments = self._exclude_payment(new_payments, self.exclude_set)
         self._add_payments_to_zaim(new_payments)
+        print("Rakuten Pay import finished")
