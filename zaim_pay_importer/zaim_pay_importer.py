@@ -21,11 +21,13 @@ class ZaimPayImporter:
         consumer_secret: str,
         access_token: str,
         access_token_secret: str,
-        credentials_path: str,
         exclude_set: set[str],
-        token_path: str = "token.json",
         app_type: str = "desktop",
+        credentials_path: str | None = None,
+        token_path: str = "token.json",
     ):
+        if credentials_path is None and app_type == "desktop":
+            raise ValueError("credentials_path is required when app_type is desktop")
         self.zaim_sdk = ZaimSDK(consumer_id, consumer_secret, access_token, access_token_secret)
         self.pay_gmail_scraper = PayGmailScraper(app_type, credentials_path, token_path)
         self.zaim_payments_list = self._get_zaim_payment_list()
