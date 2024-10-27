@@ -13,10 +13,10 @@ if __name__ == "__main__":
         CONSUMER_SECRET,
         ACCESS_TOKEN,
         ACCESS_TOKEN_SECRET,
-        CREDENTIALS_PATH,
         EXCLUDE_SET,
-        "token.json",
         "desktop",
+        CREDENTIALS_PATH,
+        "token.json",
     )
     client.import_ana_pay()
     client.import_rakuten_pay()
